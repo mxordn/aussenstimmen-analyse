@@ -18,4 +18,7 @@ The key value pairs are:
 
 "alletrue" checks for clauses at every step of the melody. "fermatentrue" only checks at fermatas.
 
-The services can be installed as a docker container.
+## Installation
+The services can be installed as a docker container. Simply run:
+
+````docker build -t [name of the container] .````
