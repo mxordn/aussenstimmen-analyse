@@ -1,4 +1,4 @@
-# Aussenstimmen-Analyse
+# Aussenstimmen-Analyse | Outer voices analysis
 
 A service that checks a 2-voice musical setting for clauses, cadences, and standard voiceleading rules.
 
