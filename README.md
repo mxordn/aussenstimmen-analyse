@@ -8,10 +8,13 @@ The flask service accepts musicxml files that are send e.g. by MuseScore. It is 
 
 The MuseScore Plugin sends a POST Request with a body x-www-formdata-urlencoded.
 
-Options are:
-- content: [musicxml string]
-- kauseln: true|false
-- aussenstimmen: alletrue|fermatentrue
+The key value pairs are:
+
+| Key | Value | 
+| -------------- | --------- |
+| content | [musicxml string] |
+| kauseln | true|false |
+| aussenstimmen | alletrue|fermatentrue |
 
 "alletrue" checks for clauses at every step of the melody. "fermatentrue" only checks at fermatas.
 
