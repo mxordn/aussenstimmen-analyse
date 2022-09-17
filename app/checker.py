@@ -7,7 +7,7 @@ from flask import request
 from .asChecker import AsChecker
 from .klauseln import KlauselAnalyser
 
-bp = Blueprint('checker', __name__, url_prefix='/checker')
+bp = Blueprint('as', __name__, url_prefix='/as')
 
 @bp.route('/analyse', methods=('GET', 'POST'))
 def analyse():

@@ -8,7 +8,6 @@ RUN apt-get -y update \
     && pip install uwsgi \
     && apt-get -y purge --auto-remove build-essential python3-dev
 
-
 COPY ./app ./app
 COPY requirements.txt .
 COPY as3.ini .
