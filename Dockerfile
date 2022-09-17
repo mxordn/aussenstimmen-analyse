@@ -16,4 +16,5 @@ COPY config.py .
 
 RUN pip install -r requirements.txt
 
+EXPOSE 8101
 CMD [ "uwsgi", "as3.ini" ]
