@@ -1,4 +1,4 @@
-from music21 import stream, interval, expressions, voiceLeading
+from music21 import stream, interval, note, expressions, voiceLeading
 
 class AsChecker():
     def __init__(self, s, partNumber):
@@ -19,14 +19,20 @@ class AsChecker():
     #Hier werden alle anderen Progressionen gecheckt.
     def asPruefen(self, consDiss=True, motion=False, melody=True, parallels=True):
         sc = self.s1.chordify()
-
+        
         for i in sc.flat.notesAndRests.recurse():
 
             v1n2 = self.s1.parts[0].flat.notesAndRests.getElementAtOrBefore(i.offset)
             v2n2 = self.s1.parts[1].flat.notesAndRests.getElementAtOrBefore(i.offset)
-
+            
             try:
-                vlq = voiceLeading.VoiceLeadingQuartet(v1n1, v1n2, v2n1, v2n2)
+                #find out, if rests are used in the new vlq
+                if type(None) in [type(vlq.v1n1), type(vlq.v1n2), type(vlq.v2n1), type(vlq.v2n2)]:
+                    #print(note.Rest in [v1n1.__class__, v1n2.__class__, v2n1.__class__, v2n2.__class__])
+                    vlq = voiceLeading.VoiceLeadingQuartet(v1n1, v1n2, v2n1, v2n2)
+                    #print(i.offset, "Voice1: ", vlq.v1n1, vlq.v1n2, "Voice2: ", vlq.v2n1, vlq.v2n2)
+                else:
+                    vlq = None
             except:
                 vlq = None
                 print('Not Working!')
