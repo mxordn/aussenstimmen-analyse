@@ -26,16 +26,18 @@ class AsChecker():
             v2n2 = self.s1.parts[1].flat.notesAndRests.getElementAtOrBefore(i.offset)
             
             try:
-                #find out, if rests are used in the new vlq
-                if type(None) in [type(vlq.v1n1), type(vlq.v1n2), type(vlq.v2n1), type(vlq.v2n2)]:
-                    #print(note.Rest in [v1n1.__class__, v1n2.__class__, v2n1.__class__, v2n2.__class__])
-                    vlq = voiceLeading.VoiceLeadingQuartet(v1n1, v1n2, v2n1, v2n2)
-                    #print(i.offset, "Voice1: ", vlq.v1n1, vlq.v1n2, "Voice2: ", vlq.v2n1, vlq.v2n2)
-                else:
+                #init a vlq (try because some notes v2n1 and v1n1 might not be initiallised)
+                vlq = voiceLeading.VoiceLeadingQuartet(v1n1, v1n2, v2n1, v2n2)
+                
+                #find out, if rests or something other than notes are used in the new vlq
+                if None in [vlq.v1n2, vlq.v2n2]:
                     vlq = None
+                    #print(type(None) in [type(vlq.v1n1), type(vlq.v1n2), type(vlq.v2n1), type(vlq.v2n2)])
+                    #print(note.Rest in [v1n1.__class__, v1n2.__class__, v2n1.__class__, v2n2.__class__])
+                    #print(i.offset, "Voice1: ", vlq.v1n1, vlq.v1n2, "Voice2: ", vlq.v2n1, vlq.v2n2)
             except:
                 vlq = None
-                print('Not Working!')
+                #print('Not Working!')
 
             try:
                 if consDiss:
