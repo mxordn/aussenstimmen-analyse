@@ -10,11 +10,11 @@ class AsChecker():
         else:
             self.bass = self.s1.parts[partNumber]
 
-    def hasFermata(self, someNote):
-        for ornament in someNote.expressions:
-            if type(ornament) == expressions.Fermata:
-                return True
-        return False
+#    def hasFermata(self, someNote):
+#        for ornament in someNote.expressions:
+#            if type(ornament) == expressions.Fermata:
+#                return True
+#        return False
 
     #Hier werden alle anderen Progressionen gecheckt.
     def asPruefen(self, consDiss=True, motion=False, melody=True, parallels=True):
@@ -24,6 +24,12 @@ class AsChecker():
 
             v1n2 = self.s1.parts[0].flat.notesAndRests.getElementAtOrBefore(i.offset)
             v2n2 = self.s1.parts[1].flat.notesAndRests.getElementAtOrBefore(i.offset)
+            v1s1 = list(self.s1.flatten().iter().notesAndRests.getElementsByOffset(i.offset))
+            print(v1n2, v2n2)
+            print("Liste: ", v1s1)
+            print(i, i[0].name, i[-1].name)
+            print("=====")
+
             
             try:
                 #init a vlq (try because some notes v2n1 and v1n1 might not be initiallised)
@@ -32,12 +38,9 @@ class AsChecker():
                 #find out, if rests or something other than notes are used in the new vlq
                 if None in [vlq.v1n2, vlq.v2n2]:
                     vlq = None
-                    #print(type(None) in [type(vlq.v1n1), type(vlq.v1n2), type(vlq.v2n1), type(vlq.v2n2)])
-                    #print(note.Rest in [v1n1.__class__, v1n2.__class__, v2n1.__class__, v2n2.__class__])
-                    #print(i.offset, "Voice1: ", vlq.v1n1, vlq.v1n2, "Voice2: ", vlq.v2n1, vlq.v2n2)
+
             except:
                 vlq = None
-                #print('Not Working!')
 
             try:
                 if consDiss:
@@ -123,8 +126,8 @@ class AsChecker():
                 pass
 
     
-    def getAnnotatedStream(self):
-        analyseDatei = stream.Stream()
-        analyseDatei.append(self.p1)
-        analyseDatei.append(self.bass)
-        return analyseDatei
+#    def getAnnotatedStream(self):
+#        analyseDatei = stream.Stream()
+#        analyseDatei.append(self.p1)
+#        analyseDatei.append(self.bass)
+#        return analyseDatei
